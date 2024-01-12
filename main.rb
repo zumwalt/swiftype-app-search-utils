@@ -204,5 +204,26 @@ File.open('./curations.json', 'w') do |f|
   f.write(JSON.pretty_generate(curations))
 end
 
+
+# Get all search settings for the engine
+# Example:
+# curl -X GET 'https://host-2376rb.api.swiftype.com/api/as/v1/engines/national-parks-demo/search_settings' \
+# -H 'Content-Type: application/json' \
+# -H 'Authorization: Bearer private-xxxxxxxxxxxxxxxx'
+
+puts "Getting search settings"
+
+response = HTTParty.get(
+  "https://#{HOST_IDENTIFIER}.api.swiftype.com/api/as/v1/engines/#{ENGINE_NAME}/search_settings",
+  headers: HEADERS
+)
+
+search_settings = JSON.parse(response.body)['search_fields']
+
+# Save the search settings to a file
+File.open('./search_settings.json', 'w') do |f|
+  f.write(JSON.pretty_generate(search_settings))
+end
+
 puts "🎉 Done!"
 
