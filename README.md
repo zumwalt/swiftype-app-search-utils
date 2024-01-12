@@ -10,6 +10,12 @@ bundle install
 
 ## Configuration
 
+Copy `.env.example` to `.env` and fill in the values:
+
+```bash
+cp .env.example .env
+```
+
 This script requires the following environment variables to be set in `.env`:
 
 ```bash
